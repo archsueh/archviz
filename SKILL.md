@@ -30,18 +30,37 @@ Anti-slop:  no purple default / no rainbow / no flowchart-for-everything / no pi
 ```
 
 **Type selection (fast):**
-| Data | Type |
-|---|---|
-| Hierarchical | mindmap |
-| Sequential | flowchart LR/TD |
-| System/layered | flowchart TD + subgraph |
-| Comparison/ranking | xychart-beta (bar) |
-| Proportional | treemap or stacked bar |
-| Timeline | gantt |
-| Distribution | histogram/box |
-| Correlation | scatter/heatmap |
-| Flow/network | sankey |
-| Simple (≤5 items) | **TABLE, not chart** |
+| Data | Type | Template |
+|---|---|---|
+| Hierarchical | mindmap | — |
+| Sequential | flowchart LR/TD | — |
+| System/layered | flowchart TD + subgraph | — |
+| Comparison/ranking | xychart-beta (bar) | — |
+| Proportional | treemap or stacked bar | — |
+| Timeline | gantt | `mermaid/gantt.mmd` |
+| Distribution | histogram/box | `mermaid/distribution.mmd` |
+| Correlation | scatter/heatmap | `python/scatter-plot.py` |
+| Flow/network | sankey | `mermaid/sankey.mmd` |
+| Funnel/conversion | funnel chart | `html/funnel.html` |
+| Decision/evaluation | decision matrix (table) | `mermaid/decision-matrix.mmd` |
+| State transitions | stateDiagram-v2 | `mermaid/state-machine.mmd` |
+| Dependencies | dependency graph | `mermaid/dependency-network.mmd` |
+| Multi-criteria scoring | radar or diverging bar | `html/radar.html` / `mermaid/diverging-bar.mmd` |
+| Simple (≤5 items) | **TABLE, not chart** | — |
+
+**Mixed types** (when data spans categories):
+- Process + timeline → flowchart with gantt sub-section (split into 2 diagrams)
+- Hierarchy + comparison → mindmap with leaf annotations (table beside)
+- Flow + metrics → sankey with tooltip/badge annotations
+- Decision + scoring → decision matrix → radar for top candidates
+- **Rule: never combine >2 types in one diagram. Split instead.**
+
+**Degradation strategy** (when data is too complex):
+1. >50 nodes → split into 2-3 linked diagrams with shared legend
+2. >7 categories → aggregate into "Other" + detail diagram
+3. Mixed data types → identify primary relationship, table the rest
+4. Preview environment fails → ASCII fallback (always prepared)
+5. Mermaid syntax error → flowchart TD + subgraph (most compatible)
 
 **Environment routing:**
 | Env | Output |
