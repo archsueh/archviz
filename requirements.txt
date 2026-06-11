@@ -1,0 +1,3 @@
+# Optional — for templates/python/ deliverables mode only
+plotly>=5.18
+matplotlib>=3.8

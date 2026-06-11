@@ -7,7 +7,7 @@ Restrained information visualization skill pack for AI agents.
 Every visualization starts with a **brief read** and **three dials** — not a default template.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Version](https://img.shields.io/badge/version-0.0.4-blue.svg)
+![Version](https://img.shields.io/badge/version-0.0.5-blue.svg)
 
 ---
 
@@ -27,7 +27,10 @@ A skill for AI agents (Claude Code, Hermes, Codex, etc.) that generates **ration
 
 ```bash
 git clone https://github.com/archsueh/archviz-skills.git
+# Claude Code / Codex
 cp -r archviz-skills ~/.claude/skills/
+# Hermes Agent
+cp -r archviz-skills ~/.hermes/skills/creative/archviz-skills
 ```
 
 ---
@@ -36,17 +39,17 @@ cp -r archviz-skills ~/.claude/skills/
 
 ```
 archviz-skills/
-├── SKILL.md              # Execution workflow (244 lines)
-├── DESIGN.md             # Design system (117 lines)
+├── SKILL.md              # Execution workflow + anti-patterns
+├── DESIGN.md             # Design system + visualization taxonomy
 ├── README.md             # This file
 ├── CONTRIBUTING.md       # Contribution guide
 ├── CHANGELOG.md          # Version history
 ├── LICENSE               # MIT
 ├── templates/
-│   ├── mermaid/          # 11 .mmd templates
+│   ├── mermaid/          # 15 .mmd templates
 │   ├── ascii/            # 4 .txt templates
-│   ├── html/             # 4 .html templates
-│   └── python/           # 2 .py templates
+│   ├── html/             # 12 .html templates
+│   └── python/           # 5 .py templates
 ├── examples/
 │   ├── mermaid-demo.md   # 3 Mermaid diagrams
 │   ├── ascii-demo.txt    # ASCII flowchart + gantt
@@ -62,7 +65,7 @@ archviz-skills/
 
 | Category | Count | Types |
 |---|---|---|
-| Mermaid | 11 | flowchart, mindmap, gantt, sankey, distribution, diverging-bar, network, architecture, scoring, intro, closed-loop |
+| Mermaid | 15 | gantt, sankey, distribution, diverging-bar, network, architecture, scoring, intro, closed-loop, funnel, decision-matrix, state-machine, dependency-network |
 | ASCII | 4 | flowchart, architecture, gantt, icon-system |
 | HTML | 12 | bubble, bullet-graph, funnel, gauge, heatmap, line, radar, sunburst, treemap, waffle, waterfall, self-contained |
 | Python | 5 | scatter-plot, box-plot, candlestick, parallel-coordinates, viz template |

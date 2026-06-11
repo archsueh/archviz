@@ -4,11 +4,12 @@ description: |
   Restrained information visualization skill pack. Every visualization starts with a brief read and three dials.
   Supports Mermaid, ASCII, data charts, process diagrams, and information icons.
   Not limited to Mermaid. Text-first, preview-compatible, anti-slop.
-version: 0.0.4
+version: 0.0.5
 author: archsueh
 license: MIT
 triggers: |
-  diagram, visualization, chart, gantt, sankey, mindmap, xychart, 可视化, 架构图, 流程图, 信息图, 甘特图
+  diagram, visualization, chart, gantt, sankey, mindmap, xychart, funnel, state diagram, decision matrix,
+  dependency graph, 可视化, 架构图, 流程图, 信息图, 甘特图, 漏斗图, 状态机, 决策矩阵, 依赖图
 ---
 
 # archviz-skills
@@ -235,7 +236,7 @@ Actual files live in `templates/`. Current inventory (do not hardcode counts in 
 
 ```
 templates/
-├── mermaid/    11 files (flowchart, mindmap, gantt, sankey, scoring, network, distribution, diverging-bar, intro, architecture, closed-loop variants)
+├── mermaid/    15 files (gantt, sankey, distribution, diverging-bar, network, scoring, intro, architecture, closed-loop, funnel, decision-matrix, state-machine, dependency-network, + system variants)
 ├── ascii/       4 files (flowchart, architecture, gantt, icon-system)
 ├── html/       12 files (bubble, bullet-graph, funnel, gauge, heatmap, line, radar, sunburst, treemap, waffle, waterfall, self-contained)
 └── python/      5 files (scatter-plot, box-plot, candlestick, parallel-coordinates, viz template)
@@ -257,7 +258,29 @@ Prefer reading the specific template file under `templates/<mode>/` at use time 
 
 ---
 
-## 14. RESOURCES
+## 14. ANTI-PATTERNS (student work + common mistakes)
+
+| Anti-pattern | Symptom | Fix |
+|---|---|---|
+| **Pie for everything** | Pie chart with >5 slices or similar values | ≤3 slices → table; >3 → treemap or stacked bar |
+| **Rainbow nodes** | Every node a different color | Same hue, vary lightness. Max 1 accent |
+| **Flowchart-for-everything** | Non-sequential data forced into flowchart | Match data relationship to type table (§QR) |
+| **Label soup** | Labels >10 words, full sentences | ≤6 words / ≤8 Chinese chars. Detail in caption |
+| **3D decoration** | 3D bar/pie for "visual interest" | Flat only. Depth = data dimension, never decoration |
+| **Dual Y-axis lie** | Two unrelated metrics on shared axis | Split into 2 charts or use indexed/baseline ratio |
+| **Truncated axis** | Bar chart Y-axis starts at non-zero | Always start at 0. Use inset zoom if range matters |
+| **Legend overload** | >7 legend items, hard to match | Aggregate "Other". Use direct labeling |
+| **Default theme** | Mermaid/Chart.js default purple/blue gradient | Always apply custom init + tokens from DESIGN.md |
+| **Missing caption** | Diagram embedded without context | Caption = finding, not title. "Sales dropped 30% in Q3" not "Q3 Sales Chart" |
+| **Color as only channel** | Red/green distinction for colorblind users | Add pattern/shape/label. Never rely on color alone |
+| **Spaghetti network** | >20 edges in network/graph | Cluster nodes, hide weak edges, or split into subgraphs |
+| **Mixed metaphor** | Flowchart arrows + pie segments + bar heights in one view | One visual language per diagram. Split if needed |
+| **Infinite Gantt** | Gantt with 30+ tasks, unreadable | Group into phases. Detail in separate Gantt or table |
+| **Emoji overload** | 🎯📊🔥 in every node | Max 1 icon per group. No emoji in formal deliverables |
+
+---
+
+## 15. RESOURCES
 
 - [mermaid-js/mermaid](https://github.com/mermaid-js/mermaid) — Official
 - [beautiful-mermaid](https://github.com/lukilabs/beautiful-mermaid) — 10.3k stars

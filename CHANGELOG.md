@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.0.5 (2026-06-11)
+
+**Hermes graphiti upgrade: teaching/academic chart gaps + anti-patterns**
+
+### Added
+- **4 Mermaid templates**: `funnel.mmd`, `decision-matrix.mmd`, `state-machine.mmd`, `dependency-network.mmd`
+- **SKILL.md §14 ANTI-PATTERNS**: 14 student-work / common-mistake guards (pie abuse, rainbow nodes, dual Y-axis, etc.)
+- **DESIGN.md taxonomy**: funnel, decision/evaluation, state transitions, dependencies + data-shape heuristics
+- **requirements.txt**: optional Plotly/Matplotlib deps for `templates/python/`
+
+### Changed
+- **SKILL.md Quick Reference**: type-selection table now routes funnel / decision / state / dependency to new templates
+- **Router triggers**: funnel, state diagram, decision matrix, 漏斗图, 状态机, 决策矩阵, 依赖图
+- **README**: Hermes install path, template counts (Mermaid 15), version 0.0.5
+
 ## 0.0.4 (2026-06-11)
 
 **Documentation accuracy + agent router support + identity cleanup + minor template hygiene**

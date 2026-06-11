@@ -39,18 +39,30 @@ Plain-text design system for all visualizations. Inspired by VoltAgent/awesome-d
 
 ## Visualization Taxonomy
 
-Based on Few's 7 relationships + Shneiderman's 6 data types:
+Based on Few's 7 relationships + Shneiderman's 6 data types + teaching/academic gaps:
 
-| Category | Types | Anti-default |
-|---|---|---|
-| Ranking/Comparison | Bar, Column, Radar (≤7), Bullet | ≤5 items → TABLE |
-| Temporal | Line, Area, Gantt, Calendar Heatmap | Gantt: codes+table+ASCII |
-| Part-to-Whole | Stacked Bar, Treemap, Sunburst | **Avoid pie/donut** |
-| Distribution | Histogram, Box Plot, Violin, Dot | — |
-| Correlation | Scatter, Heatmap, Bubble, Network | — |
-| Hierarchical | Tree, Treemap, Circle Packing | — |
-| Flow | Sankey, Chord, Flowchart | — |
-| Geospatial | Choropleth, Bubble Map | Use sparingly |
+| Category | Types | Anti-default | Template |
+|---|---|---|---|
+| Ranking/Comparison | Bar, Column, Radar (≤7), Bullet | ≤5 items → TABLE | `diverging-bar.mmd` |
+| Temporal | Line, Area, Gantt, Calendar Heatmap | Gantt: codes+table+ASCII | `gantt.mmd` |
+| Part-to-Whole | Stacked Bar, Treemap, Sunburst | **Avoid pie/donut** | `html/treemap.html` |
+| Distribution | Histogram, Box Plot, Violin, Dot | — | `distribution.mmd` |
+| Correlation | Scatter, Heatmap, Bubble, Network | — | `python/scatter-plot.py` |
+| Hierarchical | Tree, Treemap, Circle Packing | — | — |
+| Flow | Sankey, Chord, Flowchart | — | `sankey.mmd` |
+| Funnel/Conversion | Funnel chart, Pipeline stages | Max 7 stages, label with % | `funnel.mmd` |
+| Decision/Evaluation | Decision matrix, Weighted scorecard | Table-first, radar for ≤7 criteria | `decision-matrix.mmd` |
+| State Transitions | State diagram, Lifecycle | Max 10 states, label transitions | `state-machine.mmd` |
+| Dependencies | Dependency graph, Critical path | Cluster by layer, highlight blockers | `dependency-network.mmd` |
+| Geospatial | Choropleth, Bubble Map | Use sparingly | — |
+
+**Choosing by data shape** (quick heuristic):
+- "Which is better?" → comparison (bar/radar/table)
+- "How does it flow?" → sankey/flowchart
+- "What converts/drops?" → funnel
+- "What depends on what?" → dependency graph
+- "What are the states?" → state diagram
+- "How to decide?" → decision matrix + radar
 
 ---
 
