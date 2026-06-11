@@ -5,7 +5,7 @@ Three diagrams demonstrating restrained design in Obsidian/GitHub.
 ## 1. Ranking Bar
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#e8e4e0', 'primaryTextColor': '#f5f5f4', 'primaryBorderColor': '#a8a29e', 'lineColor': '#002FA7', 'fontSize': '13px'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#f5f0eb', 'primaryTextColor': '#1B365D', 'primaryBorderColor': '#a8a29e', 'lineColor': '#002FA7', 'fontSize': '13px'}}}%%
 xychart-beta
     title "Project Phases (weeks)"
     x-axis ["V1 Setup", "V2 Core", "V3 Polish"]
@@ -16,7 +16,7 @@ xychart-beta
 ## 2. Process Flow
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#e8e4e0', 'primaryTextColor': '#f5f5f4', 'primaryBorderColor': '#a8a29e', 'lineColor': '#a8a29e', 'fontSize': '13px'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#f5f0eb', 'primaryTextColor': '#1B365D', 'primaryBorderColor': '#a8a29e', 'lineColor': '#a8a29e', 'fontSize': '13px'}}}%%
 flowchart LR
     A[Brief] --> B[Design]
     B --> C[Build]

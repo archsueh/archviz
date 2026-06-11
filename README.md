@@ -7,7 +7,7 @@ Restrained information visualization skill pack for AI agents.
 Every visualization starts with a **brief read** and **three dials** — not a default template.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Version](https://img.shields.io/badge/version-0.0.7-blue.svg)
+![Version](https://img.shields.io/badge/version-0.0.8-blue.svg)
 
 ---
 
@@ -15,11 +15,28 @@ Every visualization starts with a **brief read** and **three dials** — not a d
 
 A skill for AI agents (Claude Code, Hermes, Codex, etc.) that generates **rational, minimalist, restrained visualizations**. Not just Mermaid — supports ASCII, self-contained HTML, Python (Plotly), and Three.js 3D archviz.
 
+## Design philosophy
+
+`archviz-skills` treats every diagram as a small **DESIGN.md artifact**: a plain-text design contract that an agent can read, execute, and audit. The goal is not to make diagrams prettier by default; the goal is to make their visual language explicit enough that another agent can reproduce the same taste without guessing.
+
+Every output should expose five things:
+
+| Layer | What it answers | Required evidence |
+|---|---|---|
+| Atmosphere | What should this feel like? | Palette + density + restraint |
+| Tokens | What exact values are allowed? | Hex values, line weights, type scale |
+| Components | What recurring pieces exist? | Nodes, arrows, legends, labels |
+| Layout | How does information collapse? | Direction, caps, fallbacks |
+| Guardrails | What must never happen? | Anti-patterns + validation gates |
+
+This is adapted from the `awesome-design-md` pattern: `DESIGN.md` is the visual truth source, `SKILL.md` is the execution protocol, and examples prove the contract works.
+
 **Core principles:**
 - Brief-first, anti-slop
 - Text-first, preview-compatible
 - One accent max, contrast-checked
 - Environment-aware (Obsidian / terminal / deliverables / 3D)
+- Design-contract first: no template ships without tokens, intent, constraints, and validation notes
 
 **Mode routing:**
 - **Default (2D infoviz)** — charts, flowcharts, gantt, sankey, tables, teaching diagrams

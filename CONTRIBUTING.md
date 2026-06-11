@@ -13,10 +13,12 @@ Thanks for your interest in contributing!
 ## Guidelines
 
 - All templates must follow DESIGN.md tokens (Warm Paper or IKB, max 1 accent)
+- All templates must declare the DESIGN.md contract layer they serve: atmosphere, tokens, components, layout, or guardrails
 - Mermaid templates must be preview-compatible (no architecture-beta in .md source)
 - ASCII templates must fit 80 columns
 - Keep labels short (≤6 words / ≤8 Chinese chars)
 - No emoji in labels or node names
+- Light surfaces must use dark text. Do not pair Warm Paper / Stone surfaces with near-white text.
 
 ## Adding templates
 
@@ -26,7 +28,13 @@ Place in the correct subdirectory:
 - `templates/html/` — .html files (self-contained, no deps)
 - `templates/python/` — .py files (Plotly/Matplotlib)
 
-Include a comment header with: diagram type, use case, env, dials.
+Include a comment header with: diagram type, use case, env, dials, palette, validation target.
+
+Before PR:
+1. Compare the output against DESIGN.md, not personal taste.
+2. Run a render check in the target environment.
+3. Confirm contrast, no overlap, short labels, and fallback strategy.
+4. If tokens change, update README, SKILL.md quick reference, and examples that hardcode the old values.
 
 ## Reporting issues
 

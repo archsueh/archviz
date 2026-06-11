@@ -2,6 +2,8 @@
 
 Plain-text design system for all visualizations. Inspired by VoltAgent/awesome-design-md + Google Stitch DESIGN.md.
 
+This file is the visual truth source. `SKILL.md` tells agents how to execute; this file tells them what the output should look and feel like.
+
 ---
 
 ## Atmosphere
@@ -11,6 +13,20 @@ Plain-text design system for all visualizations. Inspired by VoltAgent/awesome-d
 - **Text-first, preview-compatible**: Primary output is .mmd that renders cleanly in Obsidian/GitHub/Typora. architecture-beta only for dedicated render pipelines
 - **Data-first**: Make the "why" visible in structure, not decoration
 
+## Agent-Readable Contract
+
+Every generated diagram should be understandable as a compact design system, not just a code block. Before output, the agent must be able to point to:
+
+| Contract layer | Required decision | Failure mode if missing |
+|---|---|---|
+| Visual theme | restrained / academic / teaching / technical / spatial | Generic AI diagram |
+| Tokens | surface, text, border, accent, line weight | Inconsistent color or low contrast |
+| Component roles | node, group, edge, legend, annotation | Decorative shapes with no semantics |
+| Layout behavior | direction, max nodes, split rule, fallback | Overflow and unreadable graphs |
+| Validation | render target, contrast, overlap, fallback | Pretty source that fails in the user's viewer |
+
+`awesome-design-md` works because each `DESIGN.md` captures a real visual language: overview, tokens, typography, components, layout, guardrails, responsive behavior, and agent guide. `archviz-skills` applies the same idea to information visualization: every chart family has tokens, semantics, constraints, and validation gates.
+
 ---
 
 ## Tokens
@@ -19,11 +35,11 @@ Plain-text design system for all visualizations. Inspired by VoltAgent/awesome-d
 
 | System | surface | text | border | accent | Use |
 |---|---|---|---|---|---|
-| Warm Paper | #e8e4e0 | #f5f5f4 | #a8a29e | — | Default, academic |
+| Warm Paper | #f5f0eb | #1B365D | #a8a29e | — | Default, academic |
 | Swiss Neutral | #f5f5f4 | #1B365D | #d6d3d1 | — | Clean, print |
 | IKB Accent | #e4e8f0 | #0a0a0a | #94a3b8 | #002FA7 | guizang Swiss |
 | Lemon Accent | #f0f4e0 | #0a0a0a | #a8b898 | #FFD500 | Tech |
-| Stone Mono | #e7e5e4 | #f5f5f4 | #a8a29e | — | Austerity |
+| Stone Mono | #e7e5e4 | #292524 | #a8a29e | — | Austerity |
 
 **Contrast**: luminance(0.299R+0.587G+0.114B) < 128 → light text, ≥ 128 → dark text
 
@@ -34,6 +50,8 @@ Plain-text design system for all visualizations. Inspired by VoltAgent/awesome-d
 - Chinese: ≤8 chars/line, consistent language per diagram
 
 **Line & Shape**: 1px default, 2px accent. Sharp corners. No thick borders, no emoji, no gradients.
+
+**Token gate**: Any palette with surface luminance ≥128 must use dark text. Warm Paper and Stone Mono therefore use dark ink by default. Never pair warm light surfaces with near-white text.
 
 ---
 
@@ -191,9 +209,9 @@ Google/WICG [HTML-in-Canvas](https://github.com/WICG/html-in-canvas) renders rea
 
 ## Validation
 
-**Pre-gen**: Brief done? Dials set? Tokens locked? Labels short? Gantt: codes+table+ASCII?
+**Pre-gen**: Brief done? Dials set? Tokens locked? Labels short? Contract layer complete? Gantt: codes+table+ASCII?
 
-**Post-gen**: Render test? No overlaps? Legend present? Matches document style?
+**Post-gen**: Render test? No overlaps? Legend present? Matches document style? Contrast gate pass?
 
 **3D post-gen**: CDN imports resolve? Console clean? Resize works? Camera limits set? Touch/mobile tested?
 

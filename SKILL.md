@@ -8,7 +8,7 @@ description: |
   信息图, 甘特图, funnel, state diagram, decision matrix, 漏斗图, 状态机, 决策矩阵, 依赖图, dependency graph, or 3D building/archviz.
 license: MIT
 metadata:
-  version: 0.0.7
+  version: 0.0.8
   author: archsueh
   triggers: diagram, visualization, chart, gantt, sankey, mindmap, xychart, 可视化, 架构图, 流程图, 信息图, 甘特图, funnel, state diagram, decision matrix, 漏斗图, 状态机, 决策矩阵, 依赖图, dependency graph, three.js, 3d, archviz, building, floorplan, 建筑, 结构, 楼层, walkthrough, 漫游
 ---
@@ -23,8 +23,8 @@ metadata:
 
 ```
 Dials:      COMPLEXITY=4  DENSITY=3  RESTRAINT=8
-Palette:    surface=#e8e4e0  text=#f5f5f4  border=#a8a29e  accent=#002FA7 (max 1)
-Init:       %%{init: {'theme':'base','themeVariables':{'primaryColor':'#e8e4e0','primaryTextColor':'#f5f5f4','primaryBorderColor':'#a8a29e','lineColor':'#a8a29e','tertiaryColor':'#d6d3d1','fontSize':'13px'}}}%%
+Palette:    surface=#f5f0eb  text=#1B365D  border=#a8a29e  accent=#002FA7 (max 1)
+Init:       %%{init: {'theme':'base','themeVariables':{'primaryColor':'#f5f0eb','primaryTextColor':'#1B365D','primaryBorderColor':'#a8a29e','lineColor':'#a8a29e','tertiaryColor':'#d6d3d1','fontSize':'13px'}}}%%
 Contrast:   luminance(0.299R+0.587G+0.114B) < 128 → light text, ≥ 128 → dark text
 Labels:     ≤6 words / ≤8 Chinese chars / no ALL CAPS
 Gantt:      codes only inside block + table beside + ASCII fallback / min 3w
@@ -131,6 +131,8 @@ Output one line: **"Reading this as: \<type> for \<audience>, \<vibe>, \<palette
 
 **4-layer analysis** (from anydesign): Identity → System → Components → Layout. Mark confidence: ✅/⚠️/❓.
 
+**DESIGN.md contract** (from awesome-design-md): Atmosphere → Tokens → Components → Layout → Guardrails. If any layer is unknown, state the assumption before generating.
+
 **Anti-default:** No purple gradients, no rainbow nodes, no centered symmetry, no flowchart-for-everything, no default theme.
 
 ---
@@ -153,12 +155,12 @@ Defined in DESIGN.md. Summary:
 
 | Token | Warm Paper | Swiss | IKB |
 |---|---|---|---|
-| surface | #e8e4e0 | #f5f5f4 | #e4e8f0 |
-| text | #f5f5f4 | #1B365D | #0a0a0a |
+| surface | #f5f0eb | #f5f5f4 | #e4e8f0 |
+| text | #1B365D | #1B365D | #0a0a0a |
 | border | #a8a29e | #d6d3d1 | #94a3b8 |
 | accent | — | — | #002FA7 |
 
-**Rules:** Max 1 accent. No AI-purple. Same doc = same palette. Contrast check mandatory.
+**Rules:** Max 1 accent. No AI-purple. Same doc = same palette. Contrast check mandatory. Light surface uses dark text.
 
 ---
 
@@ -219,7 +221,7 @@ diagram: [name]
 type: [mindmap|flowchart|xychart-beta|gantt|...]
 context: [paper|log|PPT|note]
 dials: {complexity: N, density: N, restraint: N}
-tokens: {surface: "#e8e4e0", text: "#f5f5f4", border: "#a8a29e", accent: "#002FA7"}
+tokens: {surface: "#f5f0eb", text: "#1B365D", border: "#a8a29e", accent: "#002FA7"}
 confidence: {palette: "✅", layout: "✅", nodes: "⚠️"}
 ---
 ```
@@ -240,7 +242,7 @@ confidence: {palette: "✅", layout: "✅", nodes: "⚠️"}
 10. Validate (render test or alignment check)
 11. Embed (caption first = finding)
 
-**Pre-gen checklist:** Brief done? Dials set? Tokens locked? Labels short? Gantt: codes+table+ASCII?
+**Pre-gen checklist:** Brief done? DESIGN.md contract complete? Dials set? Tokens locked? Labels short? Gantt: codes+table+ASCII?
 
 ---
 

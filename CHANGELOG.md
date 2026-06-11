@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.0.8 (2026-06-11)
+
+**DESIGN.md philosophy pass — agent-readable contract + contrast correction**
+
+### Added
+- README design philosophy: diagrams are treated as compact DESIGN.md artifacts with atmosphere, tokens, components, layout, and guardrails.
+- DESIGN.md Agent-Readable Contract table, adapted from the awesome-design-md pattern.
+- SKILL.md brief inference now explicitly checks the DESIGN.md contract before generation.
+- CONTRIBUTING.md review gates for contract layer, target environment, contrast, and fallback.
+
+### Fixed
+- Warm Paper token mismatch: light warm surfaces now use dark ink text (`#1B365D`) instead of near-white text.
+- Stone Mono text token now uses dark warm ink (`#292524`) instead of near-white text.
+- SKILL.md quick reference and token table now match DESIGN.md contrast rules.
+
 ## 0.0.7 (2026-06-11)
 
 **3D template hardening — animejs v4 gotchas + ground offset + dependency reference**
