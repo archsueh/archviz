@@ -15,16 +15,16 @@
 
 | Token | Value | Role |
 |---|---|---|
-| surface | #1a1a1a | Background |
-| surface-alt | #2a2a2a | Elevated surface |
+| surface | #1a1814 | Background |
+| surface-alt | #2a2520 | Elevated surface |
 | text-primary | #e8e4e0 | Main text |
 | text-secondary | #a8a29e | Secondary text |
 | border | #44403c | Borders |
-| accent | #4d8bf5 | Accent (lighter for dark bg) |
+| accent | #58a6ff | Accent (lighter for dark bg) |
 
 ### Mermaid Init (dark mode)
 ```
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2a2a2a', 'primaryTextColor': '#e8e4e0', 'primaryBorderColor': '#44403c', 'lineColor': '#a8a29e', 'tertiaryColor': '#1a1a1a', 'fontSize': '13px'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2a2520', 'primaryTextColor': '#e8e4e0', 'primaryBorderColor': '#44403c', 'lineColor': '#a8a29e', 'tertiaryColor': '#1a1814', 'fontSize': '13px'}}}%%
 ```
 
 ### CSS Custom Properties
@@ -40,12 +40,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --surface: #1a1a1a;
-    --surface-alt: #2a2a2a;
+    --surface: #1a1814;
+    --surface-alt: #2a2520;
     --text-primary: #e8e4e0;
     --text-secondary: #a8a29e;
     --border: #44403c;
-    --accent: #4d8bf5;
+    --accent: #58a6ff;
   }
 }
 ```
