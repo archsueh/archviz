@@ -87,7 +87,6 @@ cp -r archviz-skills ~/.hermes/skills/creative/archviz-skills
 ```
 archviz-skills/
 ├── SKILL.md              # Execution workflow + anti-patterns
-├── agents/openai.yaml    # Codex UI metadata
 ├── DESIGN.md             # Design system, Stitch 9-section format (+ Extended: taxonomy, Aver, 3D)
 ├── preview.html          # Visual catalog: palettes, type scale, node/edge styles
 ├── README.md             # This file
