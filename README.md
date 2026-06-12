@@ -7,13 +7,13 @@ Restrained information visualization skill pack for AI agents.
 Every visualization starts with a **brief read** and **three dials** — not a default template.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Version](https://img.shields.io/badge/version-0.1.1-blue.svg)
+![Version](https://img.shields.io/badge/version-0.1.5-blue.svg)
 
 ---
 
 ## What this is
 
-A skill for AI agents (Claude Code, Hermes, Codex, etc.) that generates **rational, minimalist, restrained visualizations**. Not just Mermaid — supports ASCII, self-contained HTML, Python (Plotly), and Three.js 3D archviz.
+A skill for AI agents (Claude Code, Hermes, Codex, etc.) that generates **rational, minimalist, restrained visualizations**. Not just Mermaid — supports ASCII/termaid terminal rendering, self-contained HTML, Python (Plotly), Obsidian Canvas, draw.io handoff guidance, and Three.js 3D archviz.
 
 ## Design philosophy
 
@@ -36,11 +36,13 @@ This is adapted from the `awesome-design-md` pattern: `DESIGN.md` is the visual 
 - Text-first, preview-compatible
 - One accent max, contrast-checked
 - Environment-aware (Obsidian / terminal / deliverables / 3D)
+- Editable-handoff aware (`.drawio` guidance when Mermaid is not enough)
 - Design-contract first: no template ships without tokens, intent, constraints, and validation notes
 
 **Mode routing:**
 - **Default (2D infoviz)** — charts, flowcharts, gantt, sankey, tables, teaching diagrams
 - **3D archviz** — only when the brief mentions building, floorplan, structure, section cut, or walkthrough (`templates/html/threejs-*.html`)
+- **Editable handoff** — use draw.io mode when the user needs a diagram that can be edited by architects, teachers, or engineering teams after generation
 
 ---
 
@@ -109,7 +111,7 @@ archviz-skills/
 8. Responsive Behavior + degradation strategy
 9. Agent Prompt Guide — quick color reference + ready-to-use prompts
 
-Extended sections: visualization taxonomy (Few + Shneiderman), Aver signature patterns, 3D archviz (Three.js + animejs), validation gates.
+Extended sections: visualization taxonomy (Few + Shneiderman), Aver signature patterns, 3D archviz (Three.js + animejs), draw.io handoff rules, terminal routing, scene contracts, validation gates.
 
 [preview.html](preview.html) is the visual catalog (swatches, type scale, node/edge vocabulary) — open it in a browser.
 

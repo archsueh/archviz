@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.5 (2026-06-12)
+
+**Reference pass: draw.io handoff + termaid routing + scene contract**
+
+### Added
+- `references/drawio-output-mode.md` — lightweight draw.io mode for editable professional handoff without pulling in a heavy app framework.
+- `references/termaid-routing.md` — terminal-first Mermaid rendering policy: use termaid when available, then ASCII fallback.
+- `references/scene-contract.md` — intermediate scene contract for complex diagrams before choosing Mermaid / HTML / draw.io / Canvas.
+
+### Changed
+- SKILL frontmatter version → `0.1.5`.
+- README badge and capability summary now mention termaid terminal routing, Obsidian Canvas, draw.io guidance, and scene contracts.
+- SKILL routing table now includes editable architecture handoff and references the new rules.
+
+### Notes
+- Based on local review of `Agents365-ai/drawio-skill`, `fasouto/termaid`, `markdown-viewer/skills`, `Visiomaster`, `drawnix`, and `next-ai-draw-io`.
+- Intentionally **not** importing a web editor, MCP server, or full whiteboard runtime. `archviz-skills` stays light and agent-native.
+
 ## 0.1.1 (2026-06-12)
 
 **Darwin + skills-curation pass** (target score ≥90 before push)

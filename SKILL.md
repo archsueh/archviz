@@ -2,13 +2,13 @@
 name: archviz-skills
 description: |
   Restrained information visualization skill pack for AI agents. Every visualization starts with a brief read and three dials.
-  Supports Mermaid, ASCII, self-contained HTML, Python (Plotly), and Three.js 3D archviz. Text-first, preview-compatible, anti-slop.
+  Supports Mermaid, ASCII/termaid terminal rendering, self-contained HTML, Python (Plotly), Obsidian Canvas, draw.io guidance, and Three.js 3D archviz. Text-first, preview-compatible, anti-slop.
   Default mode is 2D infoviz; enter 3D only when the brief mentions building, floorplan, structure, or spatial walkthrough.
   Use when the user asks for diagram, visualization, chart, gantt, sankey, mindmap, flowchart, xychart, 可视化, 架构图, 流程图,
   信息图, 甘特图, funnel, state diagram, decision matrix, 封面, 卡片, 信息卡, 分享图, 排版, or 3D building/archviz.
 license: MIT
 metadata:
-  version: 0.1.1
+  version: 0.1.5
   source: https://github.com/archsueh/archviz-skills
   risk: safe
   author: archsueh
@@ -42,6 +42,7 @@ metadata:
 | Need | Use |
 |---|---|
 | Diagram in .md + fallbacks | **archviz-skills** |
+| Editable professional diagram | **archviz-skills draw.io mode** (`references/drawio-output-mode.md`) |
 | Publishable PNG card (14 formats) | claude-design-card |
 | Swiss/guizang Mermaid styling only | mermaid-arc-skills |
 | DESIGN.md for a product brand | anydesign + host DESIGN.md |
@@ -91,6 +92,7 @@ Editorial:  Parchment=#f5f4ed  ink=#141413  terracotta=#c96442 (max 1)  serif 50
 | Decision/evaluation | decision matrix (table) | `mermaid/decision-matrix.mmd` |
 | State transitions | stateDiagram-v2 | `mermaid/state-machine.mmd` |
 | Dependencies | dependency graph | `mermaid/dependency-network.mmd` |
+| Editable architecture handoff | draw.io XML plan | `references/drawio-output-mode.md` |
 | Multi-criteria scoring | radar or diverging bar | `html/radar.html` / `mermaid/diverging-bar.mmd` |
 | Simple (≤5 items) | **TABLE, not chart** | — |
 | **3D: Building structure** | Three.js structure shell | `html/threejs-archviz.html` |
@@ -119,9 +121,15 @@ Editorial:  Parchment=#f5f4ed  ink=#141413  terracotta=#c96442 (max 1)  serif 50
 | Env | Output |
 |---|---|
 | Obsidian/preview | lightweight Mermaid / self-contained HTML |
-| Terminal | **termaid** (`termaid diagram.mmd --theme mono`) — 18图类型，6套主题 |
+| Terminal | **termaid-first** (`termaid diagram.mmd --theme mono --width N`) then ASCII fallback |
 | Deliverables | Python (Plotly/Matplotlib) |
+| Editable handoff | draw.io `.drawio` source + optional PNG/SVG/PDF export |
 | **3D / archviz** | **Three.js self-contained HTML (CDN import)** |
+
+**Specialized references:**
+- Terminal routing and fallback policy → `references/termaid-routing.md`
+- Editable draw.io output mode → `references/drawio-output-mode.md`
+- Complex-diagram scene contract → `references/scene-contract.md`
 
 **3D archviz mode** (when brief = building/structure/spatial):
 - Stack: Three.js + animejs (camera transitions) + OrbitControls
