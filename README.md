@@ -17,9 +17,6 @@ Every visualization starts with a **brief read** and **three dials** — not a d
 <img width="1280" height="633" alt="hair-dryer-assembled" src="https://github.com/user-attachments/assets/9793fe6a-1832-442d-a1b7-20e2e1526c64" />
 
 
-<img width="auto" height="633" alt="git-push-release-workflow" src="docs/screenshots/git-push-release-workflow.png" />
-
-使用 Wes Anderson (Moonrise Kingdom) 暖有机配色，嵌入完整发布流程图（git push 步骤 ★ 高亮）。
 
 **直接打开完整版（推荐用于高质量截图）**：  
 [examples/git-push-release-workflow.html](examples/git-push-release-workflow.html)
