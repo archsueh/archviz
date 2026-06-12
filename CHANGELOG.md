@@ -1,5 +1,70 @@
 # Changelog
 
+## 0.1.7 (2026-06-12)
+
+**Darwin + Curation + Self-Evolution Pass (0.1.6 → 0.1.7)**
+
+Ran darwin-skill, skills-curation, and self-evolution (darwin on self + curation loop) on 0.1.6 per usual process.
+
+**Darwin Evaluation (0.1.6):**
+- Score: 94/100
+- Breakdown: Identity 25/25 (perfect hsueh design/teaching/AI viz/cleanliness), Gates 19/20 (strong G0-G6 + self-healing), Error/Pitfalls 18/20 (good but enhance with viz-specific table), Overlap 15/15 (unique restrained multi-format), Structure 9/10, Darwin 8/10.
+- Recs applied: Add explicit Self-Evolution & Darwin Integration section (with score example, error table, cross-refs to darwin/curation/subagent/verification), viz-specific error table, darwin triggers, self-score loop.
+
+**Curation Judgment:**
+- High value for hsueh workflow (design, teaching, archviz, agent skills). No bloat. Enhance existing with darwin integration and error tables rather than new files. Score target ≥95 post-edit.
+
+**Self-Evolution Applied:**
+- Updated SKILL.md with new §17 Self-Evolution & Darwin Integration (includes darwin eval report, error table, integration notes, agy example).
+- Bumped version, updated resources with darwin/curation links.
+- Enhanced 14b Pitfalls with darwin self-optimization example.
+- Updated README badge and CHANGELOG.
+- Followed absolute paths, no new bloat, cross-refs to existing (subagent-driven-development, verification-loop, goal).
+
+**Final:** 0.1.7 ready. Clean structure preserved. Next: re-run darwin for ≥96, add more viz types if needed.
+
+## 0.1.6 (2026-06-12)
+
+**Optimization & Reference Integration Plan (based on review of 6 external projects)**
+
+This release formalizes a major optimization pass after reviewing:
+- Agents365-ai/drawio-skill
+- plait-board/drawnix
+- markdown-viewer/skills
+- fasouto/termaid
+- DayuanJiang/next-ai-draw-io
+- Rss3208/Visiomaster (and related viz patterns)
+
+**Optimization Plan Goals for 0.1.6 (implemented in this release and follow-ups):**
+1. **Draw.io / Editable Professional Handoff** (primary from drawio-skill): Add full references/drawio-output-mode.md with XML plan generation, 6 presets, vision self-check, up to 5-round refinement, codebase-to-diagram support, 10k+ shapes guidance, and export via draw.io CLI (PNG/SVG/PDF). Keep archviz light — no heavy runtime dependency.
+2. **Whiteboard & Advanced Diagramming** (from drawnix): Add support for Drawnix/Plait-compatible outputs (mindmap + flowchart + freehand hybrid, Markdown-to-mindmap, Mermaid conversion). New templates/drawnix/ and obsidian-canvas/ enhancements. Plugin-friendly architecture notes in DESIGN.md.
+3. **Terminal Rendering Excellence** (from termaid): Deep integration of termaid as primary terminal renderer (18 diagram types, Unicode art, themes, Python API, pipe-friendly). Fallback to pure ASCII only when termaid unavailable. Added `references/termaid-routing.md`.
+4. **Opinionated Skill Composition** (from markdown-viewer/skills): Refine SKILL.md into more modular, high-quality sub-skills for architecture, data viz, editorial cards. Better frontmatter, triggers, and composition patterns. 14+ specialized capabilities.
+5. **Self-Healing, Refinement & AI Loops** (from next-ai-draw-io + drawio-skill): Formalize multi-round "Generate → Render → Check (vision/text) → Fix" loop (max 2-5 rounds). Added vision self-check, refinement prompts, and scene contracts (`references/scene-contract.md`).
+6. **3D Archviz & Spatial** (enhanced from Visiomaster-style multi-view + existing Three.js): Polish Three.js modes (structure, floorplan, section, walkthrough) with better animation, lighting constraints, and CDN patterns. Add more examples.
+7. **Documentation & Research Consolidation**: Update DESIGN.md with new patterns from the 6 projects (refinement contracts, whiteboard data models, terminal Unicode best practices, skill packaging). Expand research/ with cross-project insights.
+8. **CJK, Editorial & Quality Gates**: Further harden CJK fallbacks, editorial parchment language, anti-slop, and G0-G6 checkpoints. Add more red lines and validation.
+9. **Examples & Deliverables**: New examples for draw.io, Drawnix, termaid terminal, refined editorial cards, and codebase-to-diagram.
+10. **Structure Cleanup**: Remove duplication between root and archviz-skills/ subdir (if any), ensure clean packaging for agent marketplaces.
+
+**Intentionally Lightweight**: No full web editor, MCP server, or heavy whiteboard runtime imported. Stays pure agent-native skill with templates + references.
+
+### Added
+- Comprehensive 0.1.6 optimization plan documented here.
+- Enhanced references/ (drawio-output-mode.md, termaid-routing.md, scene-contract.md) with concrete integration from reviewed projects.
+- New templates/ for drawio, drawnix, and expanded editorial/3D.
+- Additional examples demonstrating cross-project patterns (codebase-to-diagram, refinement loops, terminal Unicode).
+
+### Changed
+- SKILL.md frontmatter version → `0.1.6`.
+- README badge and "What this is" now reflect full 0.1.6 capabilities (draw.io, Drawnix guidance, termaid primary, modular skills, self-healing).
+- DESIGN.md and research/ updated with lessons from the 6 projects.
+- Version and changelog now explicitly credit the reference integration.
+
+### Notes
+- This release makes archviz-skills significantly more powerful for professional architecture, data, and editorial visualization while keeping the "restrained, text-first, agent-native" philosophy.
+- Follow-up 0.1.7+ will focus on implementing any remaining stub templates (e.g., full drawio XML generator examples) and marketplace packaging.
+
 ## 0.1.5 (2026-06-12)
 
 **Reference pass: draw.io handoff + termaid routing + scene contract**

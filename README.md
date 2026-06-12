@@ -7,7 +7,7 @@ Restrained information visualization skill pack for AI agents.
 Every visualization starts with a **brief read** and **three dials** — not a default template.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Version](https://img.shields.io/badge/version-0.1.5-blue.svg)
+![Version](https://img.shields.io/badge/version-0.1.7-blue.svg)
 
 ---
 
@@ -73,15 +73,17 @@ archviz-skills/
 ├── templates/
 │   ├── mermaid/          # 15 .mmd templates
 │   ├── ascii/            # 4 .txt templates
-│   ├── html/             # 14 .html templates (incl. threejs-archviz)
-│   └── python/           # 5 .py templates
+│   ├── html/             # 21 .html templates (incl. threejs-archviz)
+│   ├── python/           # 5 .py templates
+│   ├── canvas/           # 2 canvas handoff templates
+│   ├── obsidian-canvas/  # 3 Obsidian Canvas templates
+│   └── excalidraw/       # 1 Excalidraw template
 ├── examples/
 │   ├── mermaid-demo.md   # Mermaid bar + flow + gantt
 │   ├── teaching-building-3d.html  # 4-floor building walkthrough
 │   ├── course-admission-flow.mmd  # Teaching funnel
 │   └── python-demo.py    # Plotly scatter + line
-├── references/           # Detailed rules (gantt, style, validation)
-└── research/             # Visualization taxonomy research
+└── references/           # Detailed rules (gantt, style, validation, draw.io, terminal routing)
 ```
 
 ---
@@ -92,8 +94,9 @@ archviz-skills/
 |---|---|---|
 | Mermaid | 15 | gantt, sankey, distribution, diverging-bar, network, architecture, scoring, intro, closed-loop, funnel, decision-matrix, state-machine, dependency-network |
 | ASCII | 4 | flowchart, architecture, gantt, icon-system |
-| HTML | 14 | bubble, bullet-graph, funnel, gauge, heatmap, line, radar, sunburst, treemap, waffle, waterfall, self-contained, threejs-archviz, threejs-floorplan |
+| HTML | 21 | bubble, bullet-graph, funnel, gauge, heatmap, line, radar, sunburst, treemap, waffle, waterfall, self-contained, threejs-archviz, threejs-floorplan, plus advanced chart templates |
 | Python | 5 | scatter-plot, box-plot, candlestick, parallel-coordinates, viz template |
+| Canvas | 6 | canvas, Obsidian Canvas, Excalidraw handoff templates |
 
 ---
 
@@ -134,6 +137,9 @@ This release incorporates patterns from the following projects (reviewed for dra
 - [fasouto/termaid](https://github.com/fasouto/termaid) — Render Mermaid diagrams as Unicode art in terminal (18 types, themes, Python API)
 - [DayuanJiang/next-ai-draw-io](https://github.com/DayuanJiang/next-ai-draw-io) — Next.js web app integrating AI with draw.io diagrams (natural language create/modify)
 - [Rss3208/Visiomaster](https://github.com/Rss3208/Visiomaster) — AI visualization and diagram generation patterns
+
+See full optimization plan and details in [CHANGELOG.md](CHANGELOG.md) (0.1.6 section).
+
 ---
 
 ## License
