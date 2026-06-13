@@ -85,6 +85,49 @@ Every generated diagram should be understandable as a compact design system, not
 
 ---
 
+## 2.5. Theme & Export System (v0.3.0)
+
+### CSS Variable Architecture
+
+All HTML templates use CSS custom properties for theming. Variables are defined in `_archviz-theme.html`:
+
+| Variable | Purpose | Warm Paper (default) |
+|---|---|---|
+| `--av-surface` | Background | `#f5f0eb` |
+| `--av-surface-alt` | Secondary bg | `#e8e4e0` |
+| `--av-surface-raised` | Card/panel bg | `#faf9f5` |
+| `--av-text-primary` | Main text | `#1B365D` |
+| `--av-text-secondary` | Secondary text | `#5e5d59` |
+| `--av-text-tertiary` | Caption/label | `#87867f` |
+| `--av-border` | Lines/borders | `#d6d3d1` |
+| `--av-accent` | One accent | `#002FA7` |
+| `--av-chart-1..6` | Chart palette | IKB → Slate → Stone → Pebble → Terracotta → Warm Gray |
+
+### Palette Registry
+
+| Palette | Mode | Accent | Use |
+|---|---|---|---|
+| Warm Paper | light | IKB `#002FA7` | Default, academic |
+| Swiss Neutral | light | Blue `#185FA5` | Clean, print |
+| Editorial Parchment | light | Terracotta `#c96442` | Editorial cards |
+| IKB Dark | dark | Periwinkle `#6B8AFF` | Dark mode, terminal |
+
+### Runtime Behavior
+
+- `prefers-color-scheme: dark` → auto-applies IKB Dark (when no explicit palette set)
+- Click toggle button or press **T** → cycles through 4 palettes
+- `localStorage('archviz-palette')` → persists across sessions
+- `window.dispatchEvent(new Event('archviz-theme-changed'))` → canvas charts redraw
+
+### Export Pipeline
+
+- **SVG path**: clone SVG → inject CSS vars → serialize → download
+- **Canvas path**: `renderAtScale(ctx, 4)` or upscale fallback → `toBlob()`
+- **HTML path**: foreignObject → canvas draw (last resort)
+- **Keyboard**: T=theme, E=menu, E→P=PNG, E→S=SVG, E→W=WebP, E→C=clipboard
+
+---
+
 ## 3. Typography Rules
 
 **Principle: 越大越细，越小越粗** — the larger the text, the lighter the weight.
