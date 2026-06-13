@@ -45,8 +45,43 @@ metadata:
 | 3D spatial (building, exploded, mechanical) | [archviz-3d](https://github.com/archsueh/archviz-3d) |
 | Dark tech infrastructure diagrams | [architecture-diagram](~/.claude/skills/creative/architecture-diagram) |
 | Educational flat diagrams (physics, chemistry, engineering) | [concept-diagrams](~/.claude/skills/creative/concept-diagrams) |
-| Article illustrations / sketches | [archviz-sketch](https://github.com/archsueh/archviz-sketch) (coming soon) |
+| Article illustrations / sketches | [archviz-sketch](https://github.com/archsueh/archviz-sketch) + `sketch-image-pipeline` skill |
 | DESIGN.md for a product brand | anydesign + host DESIGN.md |
+
+## MCP Server (programmatic access)
+
+archviz exposes a Python MCP server for AI agents. Any LLM can call it directly.
+
+```bash
+# Install
+cd ~/Developer/archviz && pip install -e ".[mcp]"
+
+# CLI usage
+archviz list                           # list 14 types
+archviz render -t stacked-bar -o chart.html
+archviz render -t sunburst -d data.json --theme ikb-dark -o chart.html
+
+# MCP server (stdio transport)
+archviz serve
+```
+
+### Tools
+| Tool | Description |
+|---|---|
+| `archviz_generate(type, data, options)` | Generate self-contained HTML visualization |
+| `archviz_list_types()` | List all types with schemas and examples |
+| `archviz_list_palettes()` | List available color palettes |
+
+### Family MCP Servers
+| Server | Tools | Location |
+|---|---|---|
+| `archviz` | 14 types (2D charts) | `~/Developer/archviz` |
+| `archviz-3d` | 2 types (building, floorplan) | `~/Developer/archviz-3d` |
+| `archviz-sketch` | 4 styles (prompt generation) | `~/Developer/archviz-sketch` |
+
+### Sketch → Image Pipeline
+For hand-drawn illustrations: `archviz_sketch_generate` → Grok `image_generate` → `vision_analyze` QA.
+See `sketch-image-pipeline` skill for full workflow.
 
 ## Checkpoints & Gates
 
