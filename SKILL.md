@@ -41,9 +41,11 @@ metadata:
 
 | Need | Use |
 |---|---|
-| Diagram in .md + fallbacks | **archviz-skills** |
-| Publishable PNG card (14 formats) | claude-design-card |
-| Swiss/guizang Mermaid styling only | mermaid-arc-skills |
+| 2D infoviz (charts, flow, cards) | **archviz** (this skill) |
+| 3D spatial (building, exploded, mechanical) | [archviz-3d](https://github.com/archsueh/archviz-3d) |
+| Dark tech infrastructure diagrams | [architecture-diagram](~/.claude/skills/creative/architecture-diagram) |
+| Educational flat diagrams (physics, chemistry, engineering) | [concept-diagrams](~/.claude/skills/creative/concept-diagrams) |
+| Article illustrations / sketches | [archviz-sketch](https://github.com/archsueh/archviz-sketch) (coming soon) |
 | DESIGN.md for a product brand | anydesign + host DESIGN.md |
 
 ## Checkpoints & Gates
