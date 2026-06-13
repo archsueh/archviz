@@ -19,6 +19,11 @@
 
 ## Post-Generation
 ### Mermaid
+- [ ] **Structure pre-check passes (MANDATORY, before claiming done):**
+      `python3 scripts/validate-mermaid.py <file.md|file.mmd>` — exit 0.
+      Catches orphan `end`, unbalanced subgraph/end, tokens glued to `end`
+      (`]end`), and broken/unterminated ```mermaid fences. These are the
+      recurring "Syntax error in text" failures a render-only check misses.
 - [ ] Renders cleanly in target (Obsidian, GitHub, Mermaid live editor).
 - [ ] No syntax errors.
 
