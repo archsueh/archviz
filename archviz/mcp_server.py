@@ -25,8 +25,13 @@ mcp = FastMCP("archviz")
 def archviz_generate(type: str, data: dict, options: dict | None = None) -> str:
     """Generate a self-contained HTML visualization.
 
+    Scope: this tool renders the self-contained HTML chart types only (the subset in
+    the engine type registry). The wider archviz skill also covers Mermaid, ASCII, and
+    Python (Plotly) output — those are produced from the skill docs/templates, not from
+    this MCP tool. Call archviz_list_types() for the exact set this tool supports.
+
     Args:
-        type: Visualization type (stacked-bar, area-chart, line-chart, sunburst, treemap, radar, funnel, gauge, heatmap, bubble, waffle, waterfall, bullet-graph, editorial-card)
+        type: HTML chart type (stacked-bar, area-chart, line-chart, sunburst, treemap, radar, funnel, gauge, heatmap, bubble, waffle, waterfall, bullet-graph, editorial-card)
         data: Chart data (schema varies by type — call archviz_list_types for details)
         options: Optional overrides (theme: warm-paper|swiss-neutral|editorial-parchment|ikb-dark, title: str, restraint: 1-10)
 

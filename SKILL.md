@@ -8,7 +8,7 @@ description: |
   信息图, 甘特图, funnel, state diagram, decision matrix, 封面, 卡片, 信息卡, 分享图, 排版.
 license: MIT
 metadata:
-  version: 0.4.0
+  version: 0.4.1
   source: https://github.com/archsueh/archviz
   risk: safe
   author: archsueh
@@ -581,73 +581,9 @@ Full design system → DESIGN.md · Editorial cards → `references/editorial-pa
 
 ---
 
-## 16. 3D GOTCHAS (踩坑记录)
+## 16b. 3D — see archviz-3d
 
-Three.js + animejs v4 实战中遇到的坑，按出现顺序记录。
-
-### CDN 依赖（自包含 HTML 模板）
-
-```html
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
-    "animejs": "https://cdn.jsdelivr.net/npm/animejs@4.4.1/dist/bundles/anime.esm.js"
-  }
-}
-</script>
-```
-
-**⚠️ animejs v4 路径不是 `lib/anime.es.js`** — 那是 v3 的路径。v4.4.1 的正确路径是 `dist/bundles/anime.esm.js`。验证方法：`curl -sI <CDN_URL>` 返回 200 才可用。
-
-### animejs v4 API 迁移
-
-| v3（旧） | v4.4.1（当前） |
-|---|---|
-| `import anime from 'animejs'` | `import { animate } from 'animejs'` |
-| `anime({targets: obj, x: 1, duration: 500})` | `animate(obj, {x: 1, duration: 500})` |
-
-**包装函数**（统一写法，避免每次改 API）：
-```js
-import { animate } from 'animejs';
-function tween(target, props) { return animate(target, props); }
-// 用法：tween(camera.position, {x: 6, y: 4, z: 8, duration: 800})
-```
-
-### 命名冲突
-
-```js
-// ❌ 错误 — animate 与 animejs 导入冲突
-function animate() { requestAnimationFrame(animate); renderer.render(scene, camera); }
-animate();
-
-// ✅ 正确 — 用 renderLoop 或其他名称
-function renderLoop() { requestAnimationFrame(renderLoop); renderer.render(scene, camera); }
-renderLoop();
-```
-
-### 地面位置
-
-```js
-// ❌ 物体 y=0 会埋进地面
-scene.add(dryer); // dryer.position.y 默认 0
-
-// ✅ 物体抬高到地面之上
-scene.add(dryer);
-dryer.position.y = 2; // 或者降低地面：gMesh.position.y = -0.5
-```
-
-### 相机动画不要直接赋值
-
-```js
-// ❌ 跳跃式，无过渡
-camera.position.set(6, 4, 8);
-
-// ✅ 用 tween 平滑过渡
-tween(camera.position, {x: 6, y: 4, z: 8, duration: 800, easing: 'easeInOutCubic'});
-```
-
-### 光照数量限制
-
-模板约束 max 3 光源（1 HemisphereLight + 1 DirectionalLight + 1 AmbientLight）。超出会影响性能且难以控制阴影。
+3D / Three.js 实现细节与 animejs v4 踩坑全部归属 archviz-3d。
+权威落点：`archviz-3d/SKILL.md` → `## Key Gotchas` + `## Detailed Pitfalls & Patterns`
+（importmap、API 迁移、`renderLoop` 命名冲突、相机 tween、DPR cap、光照/explode 约束）。
+本仓库只保留 2D 信息可视化；3D brief → 路由到 archviz-3d。

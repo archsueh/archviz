@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1 (2026-06-14)
+
+### Changed
+- `archviz_generate` MCP tool description now states its scope is the self-contained HTML chart subset only; Mermaid/ASCII/Python output come from the skill docs, not this tool.
+- SKILL.md §16 "3D GOTCHAS" relocated: 3D / Three.js / animejs gotchas now live solely in `archviz-3d` (`## Key Gotchas` + `## Detailed Pitfalls & Patterns`, consolidated there by the 2026-06-14 skill merge). The 2D skill keeps only a pointer (§16b). Aligns version with the existing `v0.4.1` commit.
+
 ## 0.4.0 (2026-06-14)
 
 ### Added
