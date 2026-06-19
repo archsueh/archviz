@@ -42,6 +42,7 @@ def sync():
             r'<!-- === Export System Script === -->.*?</body>',
             r'<!-- archviz-skills Export Utility Script -->.*?</body>',
             r'<!-- Export Utility Module — paste BEFORE </body> of any archviz HTML template -->.*?</body>',
+            r'<!-- archviz-skills Export Utility Module -->.*?</body>',
             r'<style id="archviz-export-styles">.*?</body>',
             r'<script>\s*/\* archviz-skills Export System.*?</body>'
         ]
