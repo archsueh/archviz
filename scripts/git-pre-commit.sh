@@ -10,5 +10,12 @@ fi
 echo "Syncing theme and export templates..."
 python3 scripts/sync_theme.py
 python3 scripts/sync_export.py
+
+echo "Formatting synced templates with Prettier..."
+npx prettier --write "templates/html/*.html"
+
+# Stage all HTML templates
 git add templates/html/*.html
+
+
 

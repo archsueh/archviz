@@ -50,10 +50,10 @@ def sync():
         for pattern in patterns:
             match = re.search(pattern, content, re.DOTALL | re.IGNORECASE)
             if match:
-                # We replace everything from the match start to </body> (exclusive)
+                # Find the actual closing body tag at the end of the file
                 match_start = match.start()
-                match_end = content.find("</body>", match_start)
-                if match_end != -1:
+                match_end = content.rfind("</body>")
+                if match_end != -1 and match_end > match_start:
                     print(f"Syncing export module to {f.name}...")
                     # Construct new content
                     new_content = content[:match_start] + "<!-- archviz-skills Export Utility Module -->\n" + new_export_block + content[match_end:]

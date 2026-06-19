@@ -20,99 +20,99 @@ See: examples/us-flows.html (the canonical combined artifact), references/gotcha
 -->
 
 <script type="text/template" id="flow-attach-patterns">
-/**
- * Flow Attachment Utilities (pure, no deps)
- * For Sankey (rect nodes) and Geo Flow Maps (circle nodes)
- */
+  /**
+   * Flow Attachment Utilities (pure, no deps)
+   * For Sankey (rect nodes) and Geo Flow Maps (circle nodes)
+   */
 
-/**
- * Attach from right edge of a source rect (Sankey left column)
- * @param {number} x - rect left
- * @param {number} y - rect top
- * @param {number} w - rect width
- * @param {number} h - rect height (for center calc)
- * @param {number} tx - target x (e.g. center box left)
- * @param {number} ty - target y
- * @returns {{startX: number, startY: number, endX: number, endY: number}}
- */
-function attachRectEdgeRight(x, y, w, h, tx, ty) {
-  const startX = x + w;           // exact right edge
-  const startY = y + h / 2;       // vertical center
-  // For end, caller typically uses left edge of target rect
-  return { startX, startY, endX: tx, endY: ty };
-}
+  /**
+   * Attach from right edge of a source rect (Sankey left column)
+   * @param {number} x - rect left
+   * @param {number} y - rect top
+   * @param {number} w - rect width
+   * @param {number} h - rect height (for center calc)
+   * @param {number} tx - target x (e.g. center box left)
+   * @param {number} ty - target y
+   * @returns {{startX: number, startY: number, endX: number, endY: number}}
+   */
+  function attachRectEdgeRight(x, y, w, h, tx, ty) {
+    const startX = x + w;           // exact right edge
+    const startY = y + h / 2;       // vertical center
+    // For end, caller typically uses left edge of target rect
+    return { startX, startY, endX: tx, endY: ty };
+  }
 
-/**
- * Attach to left edge of a target rect (Sankey right columns)
- */
-function attachRectEdgeLeft(x, y, w, h, sx, sy) {
-  const endX = x;                 // exact left edge
-  const endY = y + h / 2;
-  return { startX: sx, startY: sy, endX, endY };
-}
+  /**
+   * Attach to left edge of a target rect (Sankey right columns)
+   */
+  function attachRectEdgeLeft(x, y, w, h, sx, sy) {
+    const endX = x;                 // exact left edge
+    const endY = y + h / 2;
+    return { startX: sx, startY: sy, endX, endY };
+  }
 
-/**
- * Attach from perimeter of a source circle (geo map)
- * @param {number} cx, cy, r - circle
- * @param {number} tx, ty - target center
- */
-function attachCirclePerimeter(cx, cy, r, tx, ty) {
-  const dx = tx - cx;
-  const dy = ty - cy;
-  const len = Math.sqrt(dx * dx + dy * dy) || 1;
-  const ux = dx / len;
-  const uy = dy / len;
-  const startX = cx + r * ux;
-  const startY = cy + r * uy;
-  // Caller subtracts target radius for end
-  return { startX, startY };
-}
+  /**
+   * Attach from perimeter of a source circle (geo map)
+   * @param {number} cx, cy, r - circle
+   * @param {number} tx, ty - target center
+   */
+  function attachCirclePerimeter(cx, cy, r, tx, ty) {
+    const dx = tx - cx;
+    const dy = ty - cy;
+    const len = Math.sqrt(dx * dx + dy * dy) || 1;
+    const ux = dx / len;
+    const uy = dy / len;
+    const startX = cx + r * ux;
+    const startY = cy + r * uy;
+    // Caller subtracts target radius for end
+    return { startX, startY };
+  }
 
-/**
- * Perimeter attach for target circle (subtract radius)
- */
-function attachCirclePerimeterEnd(cx, cy, r, sx, sy) {
-  const dx = sx - cx;
-  const dy = sy - cy;
-  const len = Math.sqrt(dx * dx + dy * dy) || 1;
-  const ux = dx / len;
-  const uy = dy / len;
-  const endX = cx + r * ux;
-  const endY = cy + r * uy;
-  return { endX, endY };
-}
+  /**
+   * Perimeter attach for target circle (subtract radius)
+   */
+  function attachCirclePerimeterEnd(cx, cy, r, sx, sy) {
+    const dx = sx - cx;
+    const dy = sy - cy;
+    const len = Math.sqrt(dx * dx + dy * dy) || 1;
+    const ux = dx / len;
+    const uy = dy / len;
+    const endX = cx + r * ux;
+    const endY = cy + r * uy;
+    return { endX, endY };
+  }
 
-/**
- * Controlled quadratic curve with perpendicular offset (avoids overlap, Swiss clean)
- * Use after computing start/end attach points.
- * @param {number} sx,sy,ex,ey
- * @param {number} offset - perpendicular distance (positive/negative for side)
- */
-function offsetCurve(sx, sy, ex, ey, offset = 18) {
-  const mx = (sx + ex) / 2;
-  const my = (sy + ey) / 2;
-  const dx = ex - sx;
-  const dy = ey - sy;
-  const len = Math.sqrt(dx * dx + dy * dy) || 1;
-  const nx = -dy / len;  // perpendicular
-  const ny = dx / len;
-  const cx = mx + nx * offset;
-  const cy = my + ny * offset;
-  return `M${sx},${sy} Q${cx},${cy} ${ex},${ey}`;
-}
+  /**
+   * Controlled quadratic curve with perpendicular offset (avoids overlap, Swiss clean)
+   * Use after computing start/end attach points.
+   * @param {number} sx,sy,ex,ey
+   * @param {number} offset - perpendicular distance (positive/negative for side)
+   */
+  function offsetCurve(sx, sy, ex, ey, offset = 18) {
+    const mx = (sx + ex) / 2;
+    const my = (sy + ey) / 2;
+    const dx = ex - sx;
+    const dy = ey - sy;
+    const len = Math.sqrt(dx * dx + dy * dy) || 1;
+    const nx = -dy / len;  // perpendicular
+    const ny = dx / len;
+    const cx = mx + nx * offset;
+    const cy = my + ny * offset;
+    return `M${sx},${sy} Q${cx},${cy} ${ex},${ey}`;
+  }
 
-// Example usage (Sankey style, from us-flows.html energy section):
-// const s = attachRectEdgeRight(20, 390, 108, 130, 355, 388);
-// const pathD = offsetCurve(s.startX, s.startY, 355, 388, 20); // adjust offset per visual
+  // Example usage (Sankey style, from us-flows.html energy section):
+  // const s = attachRectEdgeRight(20, 390, 108, 130, 355, 388);
+  // const pathD = offsetCurve(s.startX, s.startY, 355, 388, 20); // adjust offset per visual
 
-// Example usage (map style):
-// const from = statesData.CA; const to = statesData.TX;
-// const rFrom = 7 + Math.abs(from.net) / 140;
-// const start = attachCirclePerimeter(from.x, from.y, rFrom, to.x, to.y);
-// const rTo = ...;
-// const end = attachCirclePerimeterEnd(to.x, to.y, rTo, start.startX, start.startY); // reuse
-// const d = offsetCurve(start.startX, start.startY, end.endX, end.endY, 18);
-// <path d={d} ... />
+  // Example usage (map style):
+  // const from = statesData.CA; const to = statesData.TX;
+  // const rFrom = 7 + Math.abs(from.net) / 140;
+  // const start = attachCirclePerimeter(from.x, from.y, rFrom, to.x, to.y);
+  // const rTo = ...;
+  // const end = attachCirclePerimeterEnd(to.x, to.y, rTo, start.startX, start.startY); // reuse
+  // const d = offsetCurve(start.startX, start.startY, end.endX, end.endY, 18);
+  // <path d={d} ... />
 </script>
 
 <!-- 
