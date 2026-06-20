@@ -256,6 +256,36 @@ PALETTES = {
         "border": "#c9c7bc", "accent": "#c96442",
         "chart": ["#c96442", "#5e5d59", "#87867f", "#b0aea5", "#141413", "#d6d3d1"],
     },
+    "swiss-modernist": {
+        "surface": "#ffffff", "surface-alt": "#f0f0f0", "surface-raised": "#ffffff",
+        "text-primary": "#111111", "text-secondary": "#5e5d59", "text-tertiary": "#87867f",
+        "border": "#111111", "accent": "#e4002b",
+        "chart": ["#e4002b", "#111111", "#5e5d59", "#87867f", "#d6d3d1", "#f5f4ed"],
+    },
+    "vignelli-canon": {
+        "surface": "#f4f1ea", "surface-alt": "#eae6db", "surface-raised": "#ffffff",
+        "text-primary": "#0a0a0a", "text-secondary": "#5e5d59", "text-tertiary": "#87867f",
+        "border": "#0a0a0a", "accent": "#f04e23",
+        "chart": ["#f04e23", "#0a0a0a", "#5e5d59", "#87867f", "#d6d3d1", "#f5f4ed"],
+    },
+    "still-paper": {
+        "surface": "#f5f4ed", "surface-alt": "#e8e6dc", "surface-raised": "#faf9f5",
+        "text-primary": "#141413", "text-secondary": "#5e5d59", "text-tertiary": "#87867f",
+        "border": "#c9c7bc", "accent": "#c96442",
+        "chart": ["#c96442", "#5e5d59", "#87867f", "#b0aea5", "#141413", "#d6d3d1"],
+    },
+    "signal-proof": {
+        "surface": "#f5f5f4", "surface-alt": "#e4e8f0", "surface-raised": "#ffffff",
+        "text-primary": "#0a0a0a", "text-secondary": "#475569", "text-tertiary": "#64748b",
+        "border": "#94a3b8", "accent": "#0039a6",
+        "chart": ["#0039a6", "#475569", "#64748b", "#94a3b8", "#0a0a0a", "#e2e8f0"],
+    },
+    "bridge-canvas": {
+        "surface": "#141413", "surface-alt": "#292524", "surface-raised": "#1c1917",
+        "text-primary": "#e8e4e0", "text-secondary": "#a8a29e", "text-tertiary": "#78716c",
+        "border": "#44403c", "accent": "#ffd500",
+        "chart": ["#0d9488", "#d97706", "#e8e4e0", "#78716c", "#44403c", "#292524"],
+    },
     "ikb-dark": {
         "surface": "#1a1a2e", "surface-alt": "#252540", "surface-raised": "#2a2a45",
         "text-primary": "#e8e6de", "text-secondary": "#b4b2a9", "text-tertiary": "#888780",
@@ -316,7 +346,7 @@ def render(viz_type: str, data: dict, options: dict | None = None) -> str:
 
     # Apply title override
     if "title" in options:
-        html = re.sub(r"<title>.*?</title>", f"<title>{options['title']}</title>", html, count=1)
+        html = re.sub(r"<title>.*?</title>", lambda m: f"<title>{options['title']}</title>", html, count=1)
 
     if options.get("compress"):
         html = _compress_text_via_headroom(_strip_html_for_compression(html), size_ratio=0.5)
@@ -343,56 +373,56 @@ def _inject_data(html: str, viz_type: str, data: dict) -> str:
                 [{"label": ds["label"], "values": ds["values"]} for ds in datasets],
                 ensure_ascii=False,
             )
-            html = re.sub(r"const data\s*=\s*\[.*?\];", f"const data = {js_data};", html, flags=re.DOTALL)
+            html = re.sub(r"const data\s*=\s*\[.*?\];", lambda m: f"const data = {js_data};", html, flags=re.DOTALL)
             # Also replace colors array
             colors = []
             for ds in datasets:
                 if "color" in ds:
                     colors.append(ds["color"])
             if colors:
-                html = re.sub(r"const colors\s*=\s*\[.*?\];", f"const colors = {json.dumps(colors)};", html, flags=re.DOTALL)
+                html = re.sub(r"const colors\s*=\s*\[.*?\];", lambda m: f"const colors = {json.dumps(colors, ensure_ascii=False)};", html, flags=re.DOTALL)
 
         elif viz_type in ("area-chart", "line-chart"):
             js_data = json.dumps(
                 [{"label": ds["label"], "data": ds["data"], "color": ds.get("color", "")} for ds in datasets],
                 ensure_ascii=False,
             )
-            html = re.sub(r"const series\s*=\s*\[.*?\];", f"const series = {js_data};", html, flags=re.DOTALL)
+            html = re.sub(r"const series\s*=\s*\[.*?\];", lambda m: f"const series = {js_data};", html, flags=re.DOTALL)
 
         # Replace labels
         if labels:
-            html = re.sub(r"const labels\s*=\s*\[.*?\];", f"const labels = {json.dumps(labels)};", html, flags=re.DOTALL)
+            html = re.sub(r"const labels\s*=\s*\[.*?\];", lambda m: f"const labels = {json.dumps(labels, ensure_ascii=False)};", html, flags=re.DOTALL)
 
     elif viz_type == "sunburst":
-        html = re.sub(r"const data\s*=\s*\{.*?\};", f"const data = {data_json};", html, flags=re.DOTALL)
+        html = re.sub(r"const data\s*=\s*\{.*?\};", lambda m: f"const data = {data_json};", html, flags=re.DOTALL)
 
     elif viz_type == "treemap":
         items = data.get("items", [])
         js_data = json.dumps(items, ensure_ascii=False)
-        html = re.sub(r"const data\s*=\s*\[.*?\];", f"const data = {js_data};", html, flags=re.DOTALL)
+        html = re.sub(r"const data\s*=\s*\[.*?\];", lambda m: f"const data = {js_data};", html, flags=re.DOTALL)
 
     elif viz_type == "radar":
         axes = data.get("axes", [])
         datasets = data.get("datasets", [])
         # Replace axes
-        html = re.sub(r"const axes\s*=\s*\[.*?\];", f"const axes = {json.dumps(axes)};", html, flags=re.DOTALL)
+        html = re.sub(r"const axes\s*=\s*\[.*?\];", lambda m: f"const axes = {json.dumps(axes, ensure_ascii=False)};", html, flags=re.DOTALL)
         # Replace datasets
         if datasets:
-            html = re.sub(r"const datasets\s*=\s*\[.*?\];", f"const datasets = {json.dumps(datasets)};", html, flags=re.DOTALL)
+            html = re.sub(r"const datasets\s*=\s*\[.*?\];", lambda m: f"const datasets = {json.dumps(datasets, ensure_ascii=False)};", html, flags=re.DOTALL)
 
     elif viz_type == "funnel":
         steps = data.get("steps", [])
-        html = re.sub(r"const steps\s*=\s*\[.*?\];", f"const steps = {json.dumps(steps)};", html, flags=re.DOTALL)
+        html = re.sub(r"const steps\s*=\s*\[.*?\];", lambda m: f"const steps = {json.dumps(steps, ensure_ascii=False)};", html, flags=re.DOTALL)
 
     elif viz_type == "gauge":
         for key in ("value", "max", "label", "unit"):
             if key in data:
-                val = json.dumps(data[key]) if isinstance(data[key], str) else data[key]
-                html = re.sub(rf"const {key}\s*=\s*[^;]+;", f"const {key} = {val};", html, count=1)
+                val = json.dumps(data[key], ensure_ascii=False) if isinstance(data[key], str) else data[key]
+                html = re.sub(rf"const {key}\s*=\s*[^;]+;", lambda m: f"const {key} = {val};", html, count=1)
 
     elif viz_type in ("heatmap", "bubble", "waffle", "waterfall", "bullet-graph", "editorial-card"):
         # Generic: replace `const data = {...}` with user data
-        html = re.sub(r"const data\s*=\s*[\{{\[].*?[\}}\]];", f"const data = {data_json};", html, flags=re.DOTALL)
+        html = re.sub(r"const data\s*=\s*[\{{\[].*?[\}}\]];", lambda m: f"const data = {data_json};", html, flags=re.DOTALL)
 
     return html
 
@@ -404,8 +434,9 @@ def _apply_theme(html: str, theme_name: str) -> str:
 
     palette = PALETTES[theme_name]
     # Add data-palette attribute to <html> tag
-    html = re.sub(r"<html([^>]*)>", f'<html data-palette="{theme_name}"\\1>', html, count=1)
+    html = re.sub(r"<html([^>]*)>", lambda m: f'<html data-palette="{theme_name}"{m.group(1)}>', html, count=1)
     return html
+
 
 
 def get_palette(name: str) -> dict | None:

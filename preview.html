@@ -24,6 +24,24 @@
   --av-border: #c9c7bc; --av-accent: #c96442;
   --av-chart-1: #c96442; --av-chart-2: #5e5d59; --av-chart-3: #87867f; --av-chart-4: #b0aea5;
 }
+[data-palette="still-paper"] {
+  --av-surface: #f5f4ed; --av-surface-alt: #e8e6dc; --av-surface-raised: #faf9f5;
+  --av-text-primary: #141413; --av-text-secondary: #5e5d59; --av-text-tertiary: #87867f;
+  --av-border: #c9c7bc; --av-accent: #c96442; --av-accent-soft: rgba(201,100,66,0.12);
+  --av-chart-1: #c96442; --av-chart-2: #5e5d59; --av-chart-3: #87867f; --av-chart-4: #b0aea5; --av-chart-5: #141413; --av-chart-6: #d6d3d1;
+}
+[data-palette="signal-proof"] {
+  --av-surface: #f5f5f4; --av-surface-alt: #e4e8f0; --av-surface-raised: #ffffff;
+  --av-text-primary: #0a0a0a; --av-text-secondary: #475569; --av-text-tertiary: #64748b;
+  --av-border: #94a3b8; --av-accent: #0039a6; --av-accent-soft: rgba(0,57,166,0.12);
+  --av-chart-1: #0039a6; --av-chart-2: #475569; --av-chart-3: #64748b; --av-chart-4: #94a3b8; --av-chart-5: #0a0a0a; --av-chart-6: #e2e8f0;
+}
+[data-palette="bridge-canvas"] {
+  --av-surface: #141413; --av-surface-alt: #292524; --av-surface-raised: #1c1917;
+  --av-text-primary: #e8e4e0; --av-text-secondary: #a8a29e; --av-text-tertiary: #78716c;
+  --av-border: #44403c; --av-accent: #ffd500; --av-accent-soft: rgba(255,213,0,0.12);
+  --av-chart-1: #0d9488; --av-chart-2: #d97706; --av-chart-3: #e8e4e0; --av-chart-4: #78716c; --av-chart-5: #44403c; --av-chart-6: #292524;
+}
 [data-palette="ikb-dark"], [data-theme="dark"]:not([data-palette]) {
   --av-surface: #1a1a2e; --av-surface-alt: #252540; --av-surface-raised: #2a2a45;
   --av-text-primary: #e8e6de; --av-text-secondary: #b4b2a9; --av-text-tertiary: #888780;
@@ -159,6 +177,9 @@
     'warm-paper':          { label: 'Warm Paper',    mode: 'light' },
     'swiss-neutral':       { label: 'Swiss Neutral',  mode: 'light' },
     'editorial-parchment': { label: 'Editorial',      mode: 'light' },
+    'still-paper':         { label: 'Still Paper',    mode: 'light' },
+    'signal-proof':        { label: 'Signal Proof',   mode: 'light' },
+    'bridge-canvas':       { label: 'Bridge Canvas',  mode: 'dark'  },
     'ikb-dark':            { label: 'IKB Dark',       mode: 'dark'  },
   };
   window.ARCHVIZ_PALETTES = PALETTES;
@@ -172,7 +193,7 @@
     updateToggleLabel();
   }
   function toggleTheme() {
-    const order = ['warm-paper','swiss-neutral','editorial-parchment','ikb-dark'];
+    const order = ['warm-paper','swiss-neutral','editorial-parchment','still-paper','signal-proof','bridge-canvas','ikb-dark'];
     applyPalette(order[(order.indexOf(currentPalette)+1)%order.length]);
   }
   function getCurrentPalette() { return currentPalette; }

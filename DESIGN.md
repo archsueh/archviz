@@ -436,6 +436,70 @@ Google/WICG [HTML-in-Canvas](https://github.com/WICG/html-in-canvas) renders rea
 
 ---
 
+## Extended: Architectural Layout & Presentation Grids (Arcviz-Layout Integration)
+
+This section details the layout, grid, and presentation system for architectural visualization, portfolios, A0/A1 competition panels, and social cards, as established in the `arcviz-layout` skill.
+
+### 1. Three Visual Languages (Arcviz Palette Extension)
+
+- **Still Paper (静纸) — 手作纸本风**
+  - Surface: `#F5F4ED`, Text: `#141413`, Border: `#C9C7BC`, Accent: `#C96442` (Terracotta).
+  - Title: Serif/Song (`YuMincho` / `Georgia` at 500 weight max, no bold).
+  - Rendering style: Warm ink duotone (`grade: "duo"`).
+- **Signal Proof (实证) — 理性技术图风**
+  - Surface: `#F5F5F4` or `#E4E8F0`, Text: `#0A0A0A`, Border: `#94A3B8`, Accent: `#0039A6` (Electric Blue).
+  - Title: Sans-serif (`Inter` / `Helvetica`).
+  - Rendering style: Cool duotone (`grade: "sl-duo"`).
+- **Bridge Canvas (图桥) — 电影表现力风**
+  - Surface: `#141413` (pure dark), Text: `#E8E4E0`, Border: `#44403C`, Accent: `#FFD500` (Gold/Lemon).
+  - Title: Directly overlaid on image shadow or dark backgrounds.
+  - Rendering style: Teal-gold split-tone.
+
+### 2. Rational Grid Systems (Modular Grid)
+
+- **Margins**: A0/A1 boards margin `50mm - 80mm`. A3/A4 portfolios margin `6% - 8%` of the short side.
+- **Columns**: A0 vertical (3 or 6 columns); A0 horizontal (4, 8, or 12 columns); A3/A4 landscape portfolio (6 or 12 columns).
+- **Gutters**: Unified gutter size (e.g. A0 = `20mm`, portfolio = `8mm - 12mm`).
+- **Baseline Lock**: All line heights and paragraphs locked to baseline grid multiples (e.g. `8px` or `12px`).
+- **Optical Alignment**: Large display titles shift left by `2px - 8px` to align physical ink edge to the grid.
+
+### 3. Visual Hierarchy & Asset Mapping
+
+- **Tier 1 (Focus - 35%-50% space)**: Hero renders/bird's-eye views. Centered or top, spans multiple columns.
+- **Tier 2 (Core - 20%-30% space)**: Master plan / perspective sections on flowline with scale.
+- **Tier 3 (Supporting - 15%-20% space)**: Flat elevation/section drawings, grouped neatly.
+- **Tier 4 (Narrative - 10%-15% space)**: Sequence diagrams for site/concept evolution.
+- **Tier 5 (Metadata - 5%-10% space)**: Captions, stats, text paragraphs on margins in small font size.
+- **Air Bubble Principle**: Keep at least 1 grid unit of empty margin around Tier 1 hero renders. Never touch text labels directly to render borders.
+
+### 4. Social & Editorial Card Layouts
+
+- **Safe Zones**:
+  - **16:9 / 2.35:1**: Asymmetric composition. Left 2/3 text, right 1/3 cropped render.
+  - **3:4 / 4:5**: Portrait density rule (content must cover $\ge 75\%$ of canvas height, no flex center compression).
+  - **9:16 vertical**: Top 14% logo only; middle 44%-52% title; bottom 20% + right 15% interactive safety area.
+- **Visual Dual-Track**:
+  - *Editorial × E-ink*: Serif titles, paper grain texture, quiet layout.
+  - *Swiss International*: Sans-serif (Mono labels), 0.8px grids, single bright accent color.
+- **WeChat Paired Cover**: Output a `21:9` main cover and a `1:1` thumbnail cover. Do NOT crop directly; make 1:1 text-led with zero small subtexts for readability.
+- **Ornaments**: Symmetrical decorators (≤0.8px, Terracotta dots), display quote marks (Georgia, opacity 0.07-0.12), pattern background (dots/grids, opacity 0.05-0.08).
+
+### 5. Web-to-Print & CSS Paged Media
+
+- **Page Geometry**: Use `@page` with asymmetric inside/outside margins (e.g. `--inside-margin: 0.75in`, `--outside-margin: 0.5in`) for binding.
+- **Header Suppression**: Suppress chapter start page headers using white pseudo-elements to physically cover header areas.
+- **Paragraph Micro-Typography**:
+  - Set `orphans: 2;` and `widows: 2;` to prevent single isolated lines.
+  - Auto-hyphenation: `body { hyphens: auto; hyphenate-limit-chars: 6 3 2; }`.
+  - Avoid runts using non-breaking spaces (`&nbsp;`) between the last two words of a paragraph.
+
+### 6. AI Asset Rendering & Brand Consistency
+
+- **Text Zone Composition**: Reserve 1/3 of the frame area for text. Declare contrast source (dark shadow or overcast sky) in prompts. Use preservation clause to block detail generation in this zone.
+- **Canonical Logo Plate**: Generate a master SVG/PNG logo plate with specified grotesque font (e.g. `Liberation Sans`), use it as `inputImages` in image-generation pipelines with strict recreation commands.
+
+---
+
 ## Extended: Validation
 
 **Pre-gen**: Brief done? Dials set? Tokens locked? Labels short? Contract layer complete? Gantt: codes+table+ASCII?

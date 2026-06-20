@@ -148,6 +148,72 @@
         --av-chart-6: #f5f4ed;
       }
 
+      /* === Palette: Still Paper === */
+      [data-palette="still-paper"] {
+        --av-surface: #f5f4ed;
+        --av-surface-alt: #e8e6dc;
+        --av-surface-raised: #faf9f5;
+        --av-text-primary: #141413;
+        --av-text-secondary: #5e5d59;
+        --av-text-tertiary: #87867f;
+        --av-border: #c9c7bc;
+        --av-accent: #c96442;
+        --av-accent-soft: rgba(201, 100, 66, 0.12);
+        --av-success: #3b6d11;
+        --av-warning: #854f0b;
+        --av-danger: #a32d2d;
+        --av-chart-1: #c96442;
+        --av-chart-2: #5e5d59;
+        --av-chart-3: #87867f;
+        --av-chart-4: #b0aea5;
+        --av-chart-5: #141413;
+        --av-chart-6: #d6d3d1;
+      }
+
+      /* === Palette: Signal Proof === */
+      [data-palette="signal-proof"] {
+        --av-surface: #f5f5f4;
+        --av-surface-alt: #e4e8f0;
+        --av-surface-raised: #ffffff;
+        --av-text-primary: #0a0a0a;
+        --av-text-secondary: #475569;
+        --av-text-tertiary: #64748b;
+        --av-border: #94a3b8;
+        --av-accent: #0039a6;
+        --av-accent-soft: rgba(0, 57, 166, 0.12);
+        --av-success: #1e3a8a;
+        --av-warning: #b45309;
+        --av-danger: #b91c1c;
+        --av-chart-1: #0039a6;
+        --av-chart-2: #475569;
+        --av-chart-3: #64748b;
+        --av-chart-4: #94a3b8;
+        --av-chart-5: #0a0a0a;
+        --av-chart-6: #e2e8f0;
+      }
+
+      /* === Palette: Bridge Canvas === */
+      [data-palette="bridge-canvas"] {
+        --av-surface: #141413;
+        --av-surface-alt: #292524;
+        --av-surface-raised: #1c1917;
+        --av-text-primary: #e8e4e0;
+        --av-text-secondary: #a8a29e;
+        --av-text-tertiary: #78716c;
+        --av-border: #44403c;
+        --av-accent: #ffd500;
+        --av-accent-soft: rgba(255, 213, 0, 0.12);
+        --av-success: #84cc16;
+        --av-warning: #eab308;
+        --av-danger: #ef4444;
+        --av-chart-1: #0d9488;
+        --av-chart-2: #d97706;
+        --av-chart-3: #e8e4e0;
+        --av-chart-4: #78716c;
+        --av-chart-5: #44403c;
+        --av-chart-6: #292524;
+      }
+
       /* === Dark: IKB Dark === */
       [data-palette="ikb-dark"],
       [data-theme="dark"]:not([data-palette]) {
@@ -257,6 +323,9 @@
           "editorial-parchment": { label: "Editorial", mode: "light" },
           "swiss-modernist": { label: "Swiss Modernist", mode: "light" },
           "vignelli-canon": { label: "Vignelli Canon", mode: "light" },
+          "still-paper": { label: "Still Paper", mode: "light" },
+          "signal-proof": { label: "Signal Proof", mode: "light" },
+          "bridge-canvas": { label: "Bridge Canvas", mode: "dark" },
           "ikb-dark": { label: "IKB Dark", mode: "dark" },
           "auto-time": { label: "Auto (Time)", mode: "auto" },
         };
@@ -276,7 +345,7 @@
           if (name === "auto-time") {
             const hours = new Date().getHours();
             const isDaytime = hours >= 6 && hours < 18;
-            resolvedPalette = isDaytime ? "editorial-parchment" : "ikb-dark";
+            resolvedPalette = isDaytime ? "still-paper" : "ikb-dark";
             activeMode = isDaytime ? "light" : "dark";
             root.setAttribute("data-palette-selection", "auto-time");
           } else {
@@ -297,6 +366,9 @@
             "editorial-parchment",
             "swiss-modernist",
             "vignelli-canon",
+            "still-paper",
+            "signal-proof",
+            "bridge-canvas",
             "ikb-dark",
             "auto-time",
           ];
@@ -343,9 +415,7 @@
             if (currentPalette === "auto-time") {
               const hours = new Date().getHours();
               const isDaytime = hours >= 6 && hours < 18;
-              const resolvedPalette = isDaytime
-                ? "editorial-parchment"
-                : "ikb-dark";
+              const resolvedPalette = isDaytime ? "still-paper" : "ikb-dark";
               const root = document.documentElement;
               if (root.getAttribute("data-palette") !== resolvedPalette) {
                 applyPalette("auto-time");
